@@ -1,25 +1,25 @@
 const data = {
-    "Животные": {
-        "Млекопитающие ": {
-            "Коровы ": {},
-            "Ослы ": {},
-            "Собаки ": {},
-            "Тигры ": {}
+    'Животные': {
+        'Млекопитающие ': {
+            'Коровы ': {},
+            'Ослы ': {},
+            'Собаки ': {},
+            'Тигры ': {}
         },
-        "Другие ": {
-            "Змеи ": {},
-            "Птицы ": {},
-            "Ящурицы ": {}
+        'Другие ': {
+            'Змеи ': {},
+            'Птицы ': {},
+            'Ящурицы ': {}
         }
     },
 
-    "Рыбы": {
-        "Аквариумные": {
-            "Гуппи": {},
-            "Скалярии": {}
+    'Рыбы': {
+        'Аквариумные': {
+            'Гуппи': {},
+            'Скалярии': {}
         },
-        "Морские": {
-            "Форель": {}
+        'Морские': {
+            'Форель': {}
         }
     }
 };
@@ -29,12 +29,15 @@ function createTree(container, data) {
     container.appendChild(getTree(data));
 }
 
+
 function getTree(obj) {
-    if (typeof (obj) === 'object'){
+    if (Object.keys(obj).length !== 0){
         const ul = document.createElement('ul');
         Object.keys(obj).forEach((item) => {
             const li = document.createElement('li');
-            li.innerHTML = `<span>${item}</span>`;
+            const span = document.createElement('span');
+            span.innerText = item;
+            li.appendChild(span);
             const childrenUl = getTree(obj[item]);
             if (childrenUl) {
                 li.appendChild(childrenUl);
@@ -42,8 +45,6 @@ function getTree(obj) {
             ul.appendChild(li);
         });
         return ul;
-    } else {
-        return;
     }
 }
 

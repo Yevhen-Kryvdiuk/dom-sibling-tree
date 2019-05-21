@@ -1,11 +1,9 @@
 const list = document.getElementById('container');
 
-list.onclick = function (e) {
-    const target = e.target;
-    if (target.nodeName === 'SPAN') {
-        const childrenContainer = target.parentNode.querySelector('ul');
+list.addEventListener('click', function (e) {
+    const {nodeName, parentNode} = e.target;
+    if (nodeName === 'SPAN') {
+        const childrenContainer = parentNode.querySelector('ul');
         childrenContainer.hidden = !childrenContainer.hidden;
-    } else {
-        return;
     }
-};
+});
